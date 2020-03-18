@@ -86,16 +86,21 @@ public class DepthSearch : MonoBehaviour
 
 
 
-                if (root.data != endCond && !(root.data.x == endCond.x && b1X) && !(root.data.y == endCond.y&& b2X))
-                {
-                    DepthSearchStack.Push(root);
-
-                    trueSearch(DepthSearchStack, endCond);
-                }
-                else
+                if (root.data == endCond || (root.data.x == endCond.x && b2X) || (root.data.y == endCond.y && b1X))
                 {
                     traveledNodes.Add(root);
                     finalPath.Add(root);
+                    t_finalPath.text = s_finalPath;
+                    t_command.text = s_command;
+                    t_traveledNodes.text = s_traveledNodes;
+                    t_mensagem.text = s_mensagem + " " + "Pesquisa concluida com sucesso valor inicial e final são iguais";
+                }
+                else
+                {
+
+                    DepthSearchStack.Push(root);
+
+                    trueSearch(DepthSearchStack, endCond);
 
                 }
 
@@ -111,6 +116,7 @@ public class DepthSearch : MonoBehaviour
             finalPath.Clear();
             start = true;
             end = false;
+            reset = false;
         }
 
     }
@@ -120,7 +126,7 @@ public class DepthSearch : MonoBehaviour
         if (q.Count != 0)
         {
             BucketStateNode cur;
-            if (q.Peek().data == result && !(q.Peek().data.x == result.x && b1X) && !(q.Peek().data.y == result.y && b2X))
+            if (q.Peek().data == result || (q.Peek().data.x == result.x && b2X) || (q.Peek().data.y == result.y && b1X))
             {
                 DepthSearchStack = q;
                 traveledNodes.Add(q.Peek());

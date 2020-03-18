@@ -83,17 +83,24 @@ public class WidthSearch : MonoBehaviour
 
 
                 
-                if (root.data != endCond && !(root.data.x == endCond.x && b1X) && !(root.data.y == endCond.y && b2X))
+                if (root.data == endCond || (root.data.x == endCond.x && b2X) || (root.data.y == endCond.y && b1X))
+                {
+                    traveledNodes.Add(root);
+                    finalPath.Add(root);
+                    t_finalPath.text = s_finalPath;
+                    t_command.text = s_command;
+                    t_traveledNodes.text = s_traveledNodes;
+                    t_mensagem.text = s_mensagem + " " + "Pesquisa concluida com sucesso valor inicial e final são iguais";
+                }
+                else
                 {
                     WidthSearchQueue.Enqueue(root);
 
                     trueSearch(WidthSearchQueue, endCond);
-                }
-                else
-                {
-                    traveledNodes.Add(root);
-                    finalPath.Add(root);
+
+
                     
+
                 }
 
                 end = true;
@@ -108,6 +115,7 @@ public class WidthSearch : MonoBehaviour
             finalPath.Clear();
             start = false;
             end = false;
+            reset = false;
         }
 
     }
@@ -117,7 +125,7 @@ public class WidthSearch : MonoBehaviour
         if (q.Count != 0)
         {
             BucketStateNode cur;
-            if (q.Peek().data == result && !(q.Peek().data.x == result.x && b1X) && !(q.Peek().data.y == result.y && b2X))
+            if (q.Peek().data == result || (q.Peek().data.x == result.x && b2X) || (q.Peek().data.y == result.y && b1X))
             {
                 WidthSearchQueue = q;
                 traveledNodes.Add(q.Peek());

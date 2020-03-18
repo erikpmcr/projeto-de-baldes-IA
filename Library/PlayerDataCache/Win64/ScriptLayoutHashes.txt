@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/Public/Documents/Unity Projects/FromThisHealmAndBack/FromThisHealmAndBack/exe/Aula1 AI.exe
+C:/Users/Sidney/Documents/projeto-de-baldes-IA/exe/Aula1 AI.exe
 SceneListBegin?
 Assets/Scenes/SampleScene.unity
 SceneListEnd?
